@@ -64,6 +64,3 @@ It allows users to create polls, vote on poll options, and delete polls.
 
 ---
 
-## Shoutout
-Big shoutout to everyone who encouraged me while building this project 🙌  
-This was a great learning experience combining **Angular + Spring Boot** in a real-world setup!
