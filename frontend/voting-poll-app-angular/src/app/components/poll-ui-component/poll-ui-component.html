@@ -1,0 +1,55 @@
+<div class="container">
+  <div class="new-poll-container p-5">
+    <!-- create ne poll header -->
+    <h1 class="text-center text-decoration-underline py-4">Create new poll</h1>
+
+    <div class="create-poll-box">
+      <input [(ngModel)]="newPoll.question" class="form-control  mb-4" placeholder="Enter poll question" type="text"
+        required>
+
+      <!-- poll option input box -->
+      <div class="input-option-box">
+
+        <div *ngFor="let option of newPoll.options; let i =index; trackBy:trackByIndex" class="input-group mb-3">
+          <input [(ngModel)]="option.voteOption" type="text" class="form-control  mb-2" placeholder="Enter poll option"
+            required>
+          <button (click)="newPoll.options.splice(i,1)" class="input-group-text btn btn-danger" id="basic-addon2"
+            *ngIf="newPoll.options.length > 2">Remove</button>
+
+
+        </div>
+      </div>
+    </div>
+    <button (click)="addOption()" class="btn btn-primary me-3">Add more poll options</button>
+    <button (click)="createNewPoll()" class="btn btn-primary">Add Poll</button>
+  </div>
+
+
+
+
+  <!-- available polls component -->
+
+  <div class="poll-container">
+    <div class="poll container header">
+      <h1 class="text-center py-2 text-decoration-underline">Available Polls</h1>
+    </div>
+
+    <div class="poll-question container">
+      <!-- poll questions -->
+      <div *ngFor="let poll of polls; let i = index"
+        class="poll question border border-primary-subtle rounded-1 p-3 mb-4  ">
+        <h1>{{poll.question}}</h1>
+        <div *ngFor="let options of poll.options ;let optionIndex = index" class="poll options">
+          <h4>{{options.voteOption}} </h4>
+          <button (click)="voteForPollOption(poll.id,optionIndex)" class="btn btn-primary">{{options.voteCount}}
+            Votes</button>
+
+        </div>
+        <button (click)="deletePoll(poll.id)" class="btn btn-danger mt-3">Delete poll</button>
+
+      </div>
+
+    </div>
+  </div>
+
+</div>

@@ -5,7 +5,6 @@ import dev.tanaka.voting_pole_app_production_grade.exception.PollNotFoundExcepti
 import dev.tanaka.voting_pole_app_production_grade.model.PollOption;
 import dev.tanaka.voting_pole_app_production_grade.model.Poll;
 import dev.tanaka.voting_pole_app_production_grade.repository.PollRepository;
-import dev.tanaka.voting_pole_app_production_grade.request.Vote;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -36,7 +35,7 @@ public class PollService implements PollServiceI{
 
     @Override
     public void voteOnPollOption(Long pollId, int pollOptionIndex) {
-//        obtaing poll object
+//        obtaining poll object
         Poll selectedPoll = pollRepository.findById(pollId)
                 .orElseThrow(() -> new PollNotFoundException(pollId+" not found"));
 
@@ -58,6 +57,14 @@ public class PollService implements PollServiceI{
 
         pollRepository.save(selectedPoll);
 
+    }
+
+    @Override
+    public void deletePoll(Long pollId) {
+        Poll pollToBeDeleted = pollRepository.findById(pollId)
+                .orElseThrow(() -> new PollNotFoundException(pollId+" not found"));
+
+        pollRepository.delete(pollToBeDeleted);
     }
 
 

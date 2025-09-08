@@ -10,4 +10,5 @@ public interface PollServiceI {
     List<Poll> getAllPolls();
     Poll getById(Long id);
     void voteOnPollOption(Long pollId,int pollOptionIndex);
+    void deletePoll(Long pollId);
 }
